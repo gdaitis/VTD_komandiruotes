@@ -1,11 +1,12 @@
 import scrapy
 import json
+import urllib2
 
 class KomandiruotesSpider(scrapy.Spider):
 	name = 'komandiruotes'
 
 	def start_requests(self):
-		file_data = open('URLs.json')
+		file_data = urllib2.urlopen('https://raw.githubusercontent.com/gdaitis/VTD_komandiruotes/master/scrapper/URLs.json')
 		json_data = json.load(file_data)
 		for node in json_data:
 			yield scrapy.Request(url=node['url'], callback=self.parse)
