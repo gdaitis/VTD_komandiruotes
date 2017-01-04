@@ -12,15 +12,16 @@ class KomandiruotesSpider(scrapy.Spider):
 			yield scrapy.Request(url=node['url'], callback=self.parse)
 
 	def parse(self, response):
+		array = response.css('tr.border-bottom td.mobile-new-line')
 		yield {
-				'sprendimo_numeris': response.css('tr.border-bottom td.mobile-new-line::text')[0].extract(),
-				'sprendimo_data': response.css('tr.border-bottom td.mobile-new-line::text')[1].extract(),
-				'komandiruotes_laikotarpis': response.css('tr.border-bottom td.mobile-new-line::text')[2].extract(),
-				'vykusio_asmens_vardas_pavarde': response.css('tr.border-bottom td.mobile-new-line::text')[3].extract(),
-				'istaiga': response.css('tr.border-bottom td.mobile-new-line::text')[4].extract(),
-				'vykusio_asmens_pareigybes': response.css('tr.border-bottom td.mobile-new-line::text')[5].extract(),
-				'tikslas': response.css('tr.border-bottom td.mobile-new-line::text')[6].extract(),
-				'isvykimo_vietos': response.css('tr.border-bottom td.mobile-new-line::text')[7].extract(),
-				'finansuojama_suma_eur': response.css('tr.border-bottom td.mobile-new-line::text')[8].extract(),
-				'komandiruotes_rezultatas': response.css('tr.border-bottom td.mobile-new-line::text')[9].extract(),
+				'sprendimo_numeris': array[0].css("::text").extract_first(),
+				'sprendimo_data': array[1].css("::text").extract_first(),
+				'komandiruotes_laikotarpis': array[2].css("::text").extract_first(),
+				'vykusio_asmens_vardas_pavarde': array[3].css("::text").extract_first(),
+				'istaiga': array[4].css("::text").extract_first(),
+				'vykusio_asmens_pareigybes': array[5].css("::text").extract_first(),
+				'tikslas': array[6].css("::text").extract_first(),
+				'isvykimo_vietos': array[7].css("::text").extract_first(),
+				'finansuojama_suma_eur': array[8].css("::text").extract_first(),
+				'komandiruotes_rezultatas': array[9].css("::text").extract_first(),
 			}
