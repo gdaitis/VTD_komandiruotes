@@ -5,7 +5,7 @@ class LinksSpider(scrapy.Spider):
 	name = 'links'
 	start_urls = [
 	# pakeiskit savo adresu
-		'file://127.0.0.1/Users/vhs/workspace/komandiruotes/data_20170102.json'
+		'file://127.0.0.1/Users/vhs/workspace/komandiruotes/data_20170104.json'
 	]
 
 	def parse(self, response):
